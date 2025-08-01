@@ -152,11 +152,24 @@ const GameSettings: React.FC<GameSettingsProps> = ({
               <h2 className="text-lg font-semibold text-white">AI Strength</h2>
             </div>
             
+            {/* AI Engine Status */}
+            <div className="mb-4 p-3 bg-white/5 rounded-lg border border-white/10">
+              <div className="text-xs text-gray-300 mb-2">AI Engines Status:</div>
+              <div className="flex flex-wrap gap-1">
+                <span className="text-xs px-2 py-1 bg-green-500/20 text-green-300 rounded-full border border-green-500/30">
+                  ✓ Custom Algorithm
+                </span>
+                <span className="text-xs px-2 py-1 bg-purple-500/20 text-purple-300 rounded-full border border-purple-500/30">
+                  ✓ Gemini 2.5 Flash
+                </span>
+              </div>
+            </div>
+            
             <div className="space-y-2">
               {[
-                { value: 'novice', label: 'Novice', icon: '🌱', desc: 'Learning level' },
-                { value: 'intermediate', label: 'Intermediate', icon: '⚖️', desc: 'Competitive play' },
-                { value: 'master', label: 'Master', icon: '🔥', desc: 'Grandmaster level' }
+                              { value: 'novice', label: 'Novice', icon: '🌱', desc: 'Learning level with triple AI' },
+              { value: 'intermediate', label: 'Intermediate', icon: '⚖️', desc: 'Competitive play with advanced engines' },
+              { value: 'master', label: 'Master', icon: '🔥', desc: 'Grandmaster level with all AI engines' }
               ].map(difficulty => (
                 <button
                   key={difficulty.value}

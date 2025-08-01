@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Chess, Square } from 'chess.js';
 import { Chessboard } from 'react-chessboard';
-import { ChessAI } from '../lib/chess-ai';
+import { EnhancedChessAI } from '../lib/enhanced-chess-ai';
 import { 
   RotateCcw, 
   Settings, 
@@ -209,8 +209,8 @@ const ChessGame: React.FC<ChessGameProps> = ({
     }
   }, [playerTime.remaining, aiTime.remaining, gameStatus, timeControl.type]);
 
-  // AI Engine instance
-  const aiEngine = useMemo(() => new ChessAI(aiDifficulty), [aiDifficulty]);
+  // Enhanced AI Engine instance
+  const aiEngine = useMemo(() => new EnhancedChessAI(aiDifficulty), [aiDifficulty]);
 
 
 
@@ -594,9 +594,16 @@ const ChessGame: React.FC<ChessGameProps> = ({
                         <div className="w-5 h-5 border-2 border-yellow-600 border-t-transparent rounded-full animate-spin" />
                         <div>
                           <span className="font-bold text-yellow-800">AI Thinking...</span>
-                                                     <p className="text-xs text-yellow-600">
-                             {aiEngine.getThinkingMessage()}
-                           </p>
+                          <p className="text-xs text-yellow-600">
+                            {aiEngine.getThinkingMessage()}
+                          </p>
+                          <div className="mt-1 flex flex-wrap gap-1">
+                            {aiEngine.getAISources().map((source, index) => (
+                              <span key={index} className="text-xs px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full">
+                                {source}
+                              </span>
+                            ))}
+                          </div>
                         </div>
                       </>
                     ) : (
